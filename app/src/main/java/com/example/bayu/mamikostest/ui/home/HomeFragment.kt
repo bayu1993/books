@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,7 +19,7 @@ import com.example.bayu.mamikostest.ui.detail.buku.DetailBukuActivity
 import com.example.bayu.mamikostest.ui.detail.genre.DetailGenreActivity
 import com.example.bayu.mamikostest.utils.ID_BUKU
 import com.example.bayu.mamikostest.utils.ID_GENRE
-import com.google.gson.Gson
+import com.example.bayu.mamikostest.utils.compositeDisposable
 import org.jetbrains.anko.find
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
@@ -53,7 +52,7 @@ class HomeFragment : Fragment(), MainView {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        presenter = MainPresenter(this, MainRepo())
+        presenter = MainPresenter(this, MainRepo(compositeDisposable))
         presenter.getGenre()
         presenter.getNewBook()
 
@@ -83,5 +82,8 @@ class HomeFragment : Fragment(), MainView {
         toast(error.localizedMessage).show()
     }
 
-
+    override fun onDestroy() {
+        super.onDestroy()
+        compositeDisposable.clear()
+    }
 }

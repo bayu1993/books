@@ -2,8 +2,8 @@ package com.example.bayu.mamikostest.ui.home
 
 import com.example.bayu.mamikostest.data.response.BookGenreResponse
 import com.example.bayu.mamikostest.data.response.GenreResponse
-import com.example.bayu.mamikostest.network.repo.RepoCallBack
 import com.example.bayu.mamikostest.network.repo.MainRepo
+import com.example.bayu.mamikostest.network.repo.RepoCallBack
 
 class MainPresenter(private val view: MainView, private val mainRepo: MainRepo) {
     fun getGenre() {

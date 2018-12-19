@@ -11,10 +11,10 @@ import com.example.bayu.mamikostest.R
 import com.example.bayu.mamikostest.data.model.BookGenreModel
 import com.example.bayu.mamikostest.data.response.BookGenreResponse
 import com.example.bayu.mamikostest.network.repo.BukuRepo
-import com.example.bayu.mamikostest.ui.detail.buku.BukuDetailView
 import com.example.bayu.mamikostest.ui.detail.buku.DetailBukuActivity
 import com.example.bayu.mamikostest.ui.home.HomeBookAdapter
 import com.example.bayu.mamikostest.utils.ID_BUKU
+import com.example.bayu.mamikostest.utils.compositeDisposable
 import org.jetbrains.anko.find
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
@@ -39,7 +39,7 @@ class BukuFragment : Fragment(),BukuView {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        presenter = BukuPresenter(this, BukuRepo())
+        presenter = BukuPresenter(this, BukuRepo(compositeDisposable))
         presenter.getBooks()
         adapter = HomeBookAdapter(dataBooks){
             startActivity<DetailBukuActivity>(ID_BUKU to it.id)

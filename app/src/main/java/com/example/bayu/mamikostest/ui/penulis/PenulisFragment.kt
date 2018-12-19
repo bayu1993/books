@@ -14,6 +14,7 @@ import com.example.bayu.mamikostest.data.response.PenulisPopularResponse
 import com.example.bayu.mamikostest.network.repo.PenulisRepo
 import com.example.bayu.mamikostest.ui.detail.penulis.DetailPenulisActivity
 import com.example.bayu.mamikostest.utils.ID_PENULIS
+import com.example.bayu.mamikostest.utils.compositeDisposable
 import org.jetbrains.anko.find
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
@@ -36,7 +37,7 @@ class PenulisFragment : Fragment(),PenulisView {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        presenter = PenulisPresenter(this, PenulisRepo())
+        presenter = PenulisPresenter(this, PenulisRepo(compositeDisposable))
         presenter.getPenulis()
         adapter = PenulisAdapter(penulis){
             startActivity<DetailPenulisActivity>(ID_PENULIS to it.id)
@@ -54,5 +55,9 @@ class PenulisFragment : Fragment(),PenulisView {
         toast(error.localizedMessage).show()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        compositeDisposable.clear()
+    }
 
 }

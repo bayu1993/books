@@ -1,13 +1,13 @@
 package com.example.bayu.mamikostest.ui.detail.buku
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Html
+import android.support.v7.app.AppCompatActivity
 import com.example.bayu.mamikostest.BuildConfig
 import com.example.bayu.mamikostest.R
 import com.example.bayu.mamikostest.data.response.BookDetailResponse
 import com.example.bayu.mamikostest.network.repo.BukuRepo
 import com.example.bayu.mamikostest.utils.ID_BUKU
+import com.example.bayu.mamikostest.utils.compositeDisposable
 import com.example.bayu.mamikostest.utils.loadImage
 import kotlinx.android.synthetic.main.activity_detail_penulis.*
 import org.jetbrains.anko.toast
@@ -18,7 +18,7 @@ class DetailBukuActivity : AppCompatActivity(),BukuDetailView {
         setContentView(R.layout.activity_detail_penulis)
 
         val id = intent.getIntExtra(ID_BUKU,0)
-        val presenter = DetailBukuPresenter(this, BukuRepo())
+        val presenter = DetailBukuPresenter(this, BukuRepo(compositeDisposable))
         presenter.getDetailBook(id)
     }
 
@@ -31,5 +31,10 @@ class DetailBukuActivity : AppCompatActivity(),BukuDetailView {
 
     override fun onError(error: Throwable) {
         toast(error.localizedMessage).show()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        compositeDisposable.clear()
     }
 }

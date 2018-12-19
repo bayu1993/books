@@ -20,7 +20,7 @@
         </activity>
         <activity android:name=".ui.detail.genre.DetailGenreActivity" />
         <activity android:name=".ui.detail.penulis.DetailPenulisActivity" />
-        <activity android:name=".ui.detail.buku.DetailBukuActivity"></activity>
+        <activity android:name=".ui.detail.buku.DetailBukuActivity"/>
     </application>
 
 </manifest>

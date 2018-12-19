@@ -13,6 +13,7 @@ import com.example.bayu.mamikostest.ui.detail.buku.DetailBukuActivity
 import com.example.bayu.mamikostest.ui.home.HomeBookAdapter
 import com.example.bayu.mamikostest.utils.ID_BUKU
 import com.example.bayu.mamikostest.utils.ID_GENRE
+import com.example.bayu.mamikostest.utils.compositeDisposable
 import kotlinx.android.synthetic.main.fragment_buku.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
@@ -31,7 +32,7 @@ class DetailGenreActivity : AppCompatActivity(), BukuView {
 
     private fun getBooks() {
         val id = intent.getIntExtra(ID_GENRE, 0)
-        presenter = BukuPresenter(this, BukuRepo())
+        presenter = BukuPresenter(this, BukuRepo(compositeDisposable))
         presenter.getBookByGenre(id)
 
         rv_books.layoutManager = LinearLayoutManager(this)
@@ -49,5 +50,10 @@ class DetailGenreActivity : AppCompatActivity(), BukuView {
 
     override fun onError(error: Throwable) {
         toast(error.localizedMessage).show()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        compositeDisposable.clear()
     }
 }

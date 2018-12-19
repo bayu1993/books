@@ -7,6 +7,7 @@ import com.example.bayu.mamikostest.R
 import com.example.bayu.mamikostest.data.response.PenulisDetailResponse
 import com.example.bayu.mamikostest.network.repo.PenulisRepo
 import com.example.bayu.mamikostest.utils.ID_PENULIS
+import com.example.bayu.mamikostest.utils.compositeDisposable
 import com.example.bayu.mamikostest.utils.loadImage
 import kotlinx.android.synthetic.main.activity_detail_penulis.*
 import org.jetbrains.anko.toast
@@ -21,7 +22,7 @@ class DetailPenulisActivity : AppCompatActivity(),PenulisDetailView {
 
     private fun getDetail() {
         val id = intent.getIntExtra(ID_PENULIS, 0)
-        val presenter = PenulisPresenterDetail(this, PenulisRepo())
+        val presenter = PenulisPresenterDetail(this, PenulisRepo(compositeDisposable))
         presenter.getPenulisDetail(id)
     }
 
@@ -35,5 +36,10 @@ class DetailPenulisActivity : AppCompatActivity(),PenulisDetailView {
 
     override fun onError(error: Throwable) {
         toast(error.localizedMessage).show()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        compositeDisposable.clear()
     }
 }
