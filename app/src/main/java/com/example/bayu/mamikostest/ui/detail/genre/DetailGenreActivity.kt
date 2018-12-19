@@ -36,7 +36,7 @@ class DetailGenreActivity : AppCompatActivity(), BukuView {
 
         rv_books.layoutManager = LinearLayoutManager(this)
         adapter = HomeBookAdapter(dataBooks) {
-            startActivity<DetailBukuActivity>(ID_BUKU to id)
+            startActivity<DetailBukuActivity>(ID_BUKU to it.id)
         }
         rv_books.adapter = adapter
     }
