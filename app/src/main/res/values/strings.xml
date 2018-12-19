@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Mamikos Test</string>
+    <string name="home">Home</string>
+    <string name="buku">Buku</string>
+    <string name="penulis">Penulis</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="category">Category</string>
+    <string name="new_books">New Books</string>
+</resources>
