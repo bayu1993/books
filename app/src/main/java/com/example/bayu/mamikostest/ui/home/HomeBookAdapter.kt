@@ -10,6 +10,7 @@ import com.example.bayu.mamikostest.BuildConfig
 import com.example.bayu.mamikostest.R
 import com.example.bayu.mamikostest.data.model.BookGenreModel
 import com.example.bayu.mamikostest.utils.loadImage
+import com.example.bayu.mamikostest.utils.loadUrl
 import org.jetbrains.anko.find
 
 class HomeBookAdapter(
@@ -32,7 +33,7 @@ class HomeBookAdapter(
         private val imgCover = itemView.find<ImageView>(R.id.img_cover)
         private val tvTitle = itemView.find<TextView>(R.id.tv_title_book)
         fun bind(newBook:BookGenreModel, listener: (BookGenreModel) -> Unit){
-            imgCover.loadImage("${BuildConfig.BASE_URL}${newBook.cover_url}")
+            imgCover.loadImage(loadUrl(newBook.cover_url))
             tvTitle.text = newBook.title
             itemView.setOnClickListener { listener(newBook) }
         }

@@ -9,6 +9,7 @@ import com.example.bayu.mamikostest.network.repo.PenulisRepo
 import com.example.bayu.mamikostest.utils.ID_PENULIS
 import com.example.bayu.mamikostest.utils.compositeDisposable
 import com.example.bayu.mamikostest.utils.loadImage
+import com.example.bayu.mamikostest.utils.loadUrl
 import kotlinx.android.synthetic.main.activity_detail_penulis.*
 import org.jetbrains.anko.toast
 
@@ -28,7 +29,7 @@ class DetailPenulisActivity : AppCompatActivity(),PenulisDetailView {
 
     override fun showPenulis(data: PenulisDetailResponse) {
         supportActionBar?.title = data.result.username
-        img_cover_detail.loadImage("${BuildConfig.BASE_URL}${data.result.photoUrl}")
+        img_cover_detail.loadImage(loadUrl(data.result.photoUrl))
         tv_name_detail.text = data.result.name
         tv_email.text = data.result.email
         tv_telp.text = data.result.phone

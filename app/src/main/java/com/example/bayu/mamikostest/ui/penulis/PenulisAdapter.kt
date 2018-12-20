@@ -10,6 +10,7 @@ import com.example.bayu.mamikostest.BuildConfig
 import com.example.bayu.mamikostest.R
 import com.example.bayu.mamikostest.data.model.PenulisPopular
 import com.example.bayu.mamikostest.utils.loadImage
+import com.example.bayu.mamikostest.utils.loadUrl
 import org.jetbrains.anko.find
 
 class PenulisAdapter(
@@ -31,7 +32,7 @@ class PenulisAdapter(
         private val imgPenulis: ImageView = itemView.find(R.id.img_cover)
 
         fun bind(penulis: PenulisPopular, listener: (PenulisPopular) -> Unit) {
-            imgPenulis.loadImage("${BuildConfig.BASE_URL}${penulis.photoUrl}")
+            imgPenulis.loadImage(loadUrl(penulis.photoUrl))
             penulisName.text = penulis.name
             itemView.setOnClickListener { listener(penulis) }
         }

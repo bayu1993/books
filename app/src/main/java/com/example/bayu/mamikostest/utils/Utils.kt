@@ -1,8 +1,7 @@
 package com.example.bayu.mamikostest.utils
 
-import android.support.v4.content.res.ResourcesCompat
 import android.widget.ImageView
-import com.example.bayu.mamikostest.R
+import com.example.bayu.mamikostest.BuildConfig
 import com.squareup.picasso.Picasso
 import io.reactivex.disposables.CompositeDisposable
 
@@ -15,6 +14,9 @@ val compositeDisposable = CompositeDisposable()
 fun ImageView.loadImage(url: String) {
     Picasso.get()
         .load(url)
-        .placeholder(ResourcesCompat.getDrawable(resources,R.drawable.ic_launcher_background,null)!!)
         .into(this)
+}
+
+fun loadUrl(url: String): String {
+    return BuildConfig.BASE_URL + BuildConfig.FILES + url + BuildConfig.API
 }

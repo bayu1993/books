@@ -9,6 +9,7 @@ import com.example.bayu.mamikostest.network.repo.BukuRepo
 import com.example.bayu.mamikostest.utils.ID_BUKU
 import com.example.bayu.mamikostest.utils.compositeDisposable
 import com.example.bayu.mamikostest.utils.loadImage
+import com.example.bayu.mamikostest.utils.loadUrl
 import kotlinx.android.synthetic.main.activity_detail_penulis.*
 import org.jetbrains.anko.toast
 
@@ -24,7 +25,7 @@ class DetailBukuActivity : AppCompatActivity(),BukuDetailView {
 
     override fun showBuku(data: BookDetailResponse) {
         supportActionBar?.title = data.result.title
-        img_cover_detail.loadImage("${BuildConfig.BASE_URL}${data.result.cover_url}")
+        img_cover_detail.loadImage(loadUrl(data.result.cover_url))
         tv_name_detail.text = data.result.title
         tv_email.text = data.result.desc
     }

@@ -68,4 +68,9 @@ class MainActivity : AppCompatActivity() {
                 .commit()
         }
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        this.finish()
+    }
 }
